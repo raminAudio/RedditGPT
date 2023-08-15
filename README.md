@@ -9,6 +9,8 @@ August 14th/2023
 
 How to create your own GPT model from scratch on sub-reddits. 
 
+Almost all the implementations were inspired by Andrej karpathy Youtube Videos and his repo. 
+https://github.com/karpathy/nanoGPT
 <!-- ![alt text](notebook/reddit_torchviz.png) -->
 
 
