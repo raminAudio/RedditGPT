@@ -16,7 +16,7 @@ from unidecode import unidecode
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 path_to_data = '../data/'
-eval_iters = 2
+eval_iters = 50
 
 @dataclass
 class GPTConfig:

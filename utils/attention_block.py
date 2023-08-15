@@ -33,9 +33,37 @@ class GPTConfig:
 config = dill.load(open(path_to_data + 'scratch_reddit_gpt_config.pickle','rb'))
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
-tokenizer = ByteLevelBPETokenizer(path_to_data + 'redditTok-vocab.json', path_to_data +'redditTok-merges.txt')
-pad_token_id = tokenizer.token_to_id('</s>')
-end_token_id = pad_token_id
+
+
+path = [path_to_data + 'training_text.txt']
+# Initialize a tokenizer
+tokenizer = ByteLevelBPETokenizer()
+
+# Customize training
+tokenizer.train(files=path, vocab_size=52_000, min_frequency=2, special_tokens=[
+    "<s>",
+    "<pad>",
+    "</s>",
+    "<unk>",
+    "<mask>",
+])
+
+tokenizer.enable_padding(pad_token='</s>')
+end_token_id = tokenizer.token_to_id('</s>')
+start_token_id = tokenizer.token_to_id('<s>')
+pad_token_id = end_token_id
+
+
+encode = lambda s: tokenizer.encode(s).ids
+decode = lambda l: tokenizer.decode(l)
+
+vocab_size = tokenizer.get_vocab_size()
+print("number of words " , vocab_size)
+
+tokenizer.encode('<s> hi how are you? </s>').ids
+# Save files to disk
+tokenizer.save_model(path_to_data, "redditTok")
+
 
 class Head(nn.Module):
     """ self-attention """
