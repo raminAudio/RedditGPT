@@ -36,7 +36,7 @@ val_data = pickle.load(open(path_to_data + 'valid_data.pickle','rb'))
 
 # Training Helper
 @torch.no_grad()
-def estimate_loss():
+def estimate_loss(model):
     out = {}
     model.eval()
     for split in ['train', 'val']:
