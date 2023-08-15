@@ -5,7 +5,10 @@ __pycache__/
 
 # C extensions
 *.so
-
+data/*
+*.data/
+./data/*
+*.pickle
 # Distribution / packaging
 .Python
 build/
