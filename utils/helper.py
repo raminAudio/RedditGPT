@@ -31,10 +31,8 @@ class GPTConfig:
     
 config = dill.load(open(path_to_data + 'scratch_reddit_gpt_config.pickle','rb'))
 
-
 train_data = pickle.load(open(path_to_data + 'train_data.pickle','rb'))
 val_data = pickle.load(open(path_to_data + 'valid_data.pickle','rb'))
-# print(config)
 
 # Training Helper
 @torch.no_grad()

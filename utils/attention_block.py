@@ -35,6 +35,7 @@ config = dill.load(open(path_to_data + 'scratch_reddit_gpt_config.pickle','rb'))
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 tokenizer = ByteLevelBPETokenizer(path_to_data + 'redditTok-vocab.json', path_to_data +'redditTok-merges.txt')
 pad_token_id = tokenizer.token_to_id('</s>')
+end_token_id = pad_token_id
 
 class Head(nn.Module):
     """ self-attention """
